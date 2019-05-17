@@ -1,12 +1,12 @@
 const express = require('express')
-
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
 const app = express()
+const userRouter = require('./user')
 
-app.get('/user', function (req, res) {
-    res.write('你好')
-    res.end()
-})
-
+app.use(bodyParser.json())
+app.use(cookieParser())
+app.use('/user', userRouter)
 app.listen('10086', function () {
     console.log('启动成功')
 })
